@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sign.dao.ICreateDao">
+	<insert id="addRecord" parameterType="com.sign.dto.RecordInfo">
+	　　	<selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+	      	select history_sequence.nextval from dual
+	    </selectKey>
+	     insert into sign_history(id,test_name,subject,create_time,grade,user_name,titles,score,titles_score) 
+	     values(#{id},#{testName},#{subject},#{createTime},#{grade,jdbcType=VARCHAR},#{userName,jdbcType=VARCHAR},#{titles},#{score},#{titlesScore})
+	</insert>
+	<select id="findQuesetionByTypes" resultType="com.sign.dto.ExaminationQuestions">
+		select *
+		from (
+			SELECT id,types,subject,question,answer,create_time,change_record,
+		     	answer_record,question_img,grade,extend,extend2 
+		    FROM sign_examination_questions  
+			where types=#{param2} and subject=#{param1}
+			order by dbms_random.value)
+		where rownum&lt;=#{param3}
+	</select>
+</mapper> 

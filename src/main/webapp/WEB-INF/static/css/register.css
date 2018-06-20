@@ -1,0 +1,62 @@
+#main {
+	padding-top: 4%;
+}
+#main #content .register-main { 
+	padding: 20px;
+	height:240px
+}
+#main #content .register-main form div {
+    position: relative;
+    width: 290px;
+    margin: 0 auto
+}
+#main #content .register-main form div label{
+	font-size: 16px;
+	color: #696969;
+	line-height: 36px;
+	margin-right:15px;
+    float:left
+}
+#main #content .register-main form div input {
+    width: 180px;
+    height: 34px;
+    padding: 0 8px;
+    background: white;
+    border: solid 1px #cdcdcd;
+    outline: none;
+    -moz-box-shadow: 0 3px 3px rgba(0,0,0,.05) inset;
+    -webkit-box-shadow: 0 3px 3px rgba(0,0,0,.05) inset;
+    box-shadow: 0 3px 3px rgba(0,0,0,.05) inset;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #696969;
+    -webkit-font-smoothing: antialiased;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+}
+#main #content .register-main form .input-sex input {
+    width: 15px;
+    float:left;
+    margin-left:15px;
+    border:none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    transition: none;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    -ms-transition: none;
+}
+#main #content .register-main form .input-sex .sex-girl {
+	margin-right:24px;
+}
+#main #content .register-main div input[type=text]:focus { border: solid 1px #9f9f9f }

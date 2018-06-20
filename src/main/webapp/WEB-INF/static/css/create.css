@@ -1,0 +1,96 @@
+@CHARSET "UTF-8";
+/*出题部分*/
+#main #content .create {
+	width: 80%;
+	margin: 0 auto;
+	font-size: 16px;
+	color: #696969;
+	line-height: 36px;
+}
+#main #content .create #create-top {
+	width: 80%;
+	padding: 20px;
+	margin: 0 auto;
+	text-align:center;
+	position: relative;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+/*边框文字*/
+#main #content .create #create-top .c-title {
+	position: absolute;
+	top: -13px;
+	left: 10%;
+	line-height: 2em;
+	padding: 0 1em;
+	background-color: #fff;
+}
+/*边框文字*/
+#main #content .create #create-bottom {
+	width: 80%;
+	margin: 0 auto;
+}
+#main #content .create #create-bottom #c-t{
+	width: 100%;
+}
+#main #content .create #create-bottom #c-b{
+	width: 50%;
+	margin: 0 auto;
+	text-align:center;
+	float:left;
+}
+#main #content .create #create-bottom #c-b span{
+	padding: 0 20px 0 20px;
+	text-align:center;
+}
+.i-b{
+	background: #f7f7f7;
+	width:100px;
+	margin-right: 20px;
+}
+.i-b:hover{
+	background: #e0e0e0;
+}
+.i-t{
+	width:80px;
+	margin-right: 20px;
+}
+.i-f{
+	width:80px;
+}
+.c-button1{
+	top: 52px;
+}
+.c-button2{
+	top: 105px;
+}
+#c-testName label{
+	font-size: 16px;
+	color: #696969;
+	line-height: 36px;
+	margin-right:15px;
+	margin-left:20%;
+}
+#c-testName input{
+	margin-bottom: 10px;
+	width: 180px;
+    height: 34px;
+    padding: 0 8px;
+    background: white;
+    border: solid 1px #cdcdcd;
+    outline: none;
+    -moz-box-shadow: 0 3px 3px rgba(0,0,0,.05) inset;
+    -webkit-box-shadow: 0 3px 3px rgba(0,0,0,.05) inset;
+    box-shadow: 0 3px 3px rgba(0,0,0,.05) inset;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #696969;
+    -webkit-font-smoothing: antialiased;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+}

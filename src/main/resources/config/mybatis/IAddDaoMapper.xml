@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sign.dao.IAddDao">
+	<select id="findAllSubject" resultType="java.lang.String">
+		SELECT suject_name FROM
+		sign_subject
+	</select>
+	<insert id="addSubject" parameterType="java.lang.String">
+		insert into
+		sign_subject(suject_name)
+		values(#{subject})
+	</insert>
+	<delete id="delSubject" parameterType="java.lang.String">
+		delete from sign_subject
+		where suject_name in
+		<foreach item="subject" collection="list" open="(" close=")"
+			separator=",">
+			#{subject}
+		</foreach>
+	</delete>
+
+	<select id="findAllQuestionType" resultType="java.lang.String">
+		SELECT type_name
+		FROM sign_question_types ORDER BY type_name DESC
+	</select>
+	<insert id="addType" parameterType="java.lang.String">
+		insert into
+		sign_question_types(type_name)
+		values(#{type})
+	</insert>
+	<delete id="delType" parameterType="java.lang.String">
+		delete from
+		sign_question_types
+		where type_name in
+		<foreach item="type" collection="list" open="(" close=")"
+			separator=",">
+			#{type}
+		</foreach>
+	</delete>
+
+	<insert id="addQuestion" parameterType="com.sign.dto.ExaminationQuestions">
+		<selectKey keyProperty="id" resultType="java.lang.String"
+			order="BEFORE">
+			select questions_sequence.nextval from dual
+		</selectKey>
+		insert into
+		sign_examination_questions(id,types,subject,question,answer,create_time,change_record,answer_record,question_img,grade,extend,extend2)
+		values('${types}_${id}',#{types},#{subject},#{question},#{answer},#{createTime},#{changeRecord},#{answerRecord},#{questionImg,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{extend},#{extend2})
+	</insert>
+	<select id="findQuestion" parameterType="com.sign.dto.ExaminationQuestions"
+		resultType="com.sign.dto.ExaminationQuestions">
+		SELECT
+		id,types,subject,question,answer,create_time,change_record,
+		answer_record,question_img,grade,extend,extend2
+		FROM
+		sign_examination_questions
+		where types=#{types} and subject=#{subject}
+		and question LIKE
+		'${question}%'
+	</select>
+	<!-- 检索导入excel中的题目是否存在 -->
+	<select id="findQuestionByExcel" resultType="com.sign.dto.ExaminationQuestions"
+		parameterType="com.sign.dto.ExaminationQuestions">
+		SELECT id,types,subject,question,answer,create_time,change_record,
+		answer_record,question_img,grade,extend,extend2
+		FROM
+		sign_examination_questions
+		where question in
+		<foreach collection="list" item="i" index="index" open="("
+			close=")" separator=",">
+			#{i.question}
+		</foreach>
+	</select>
+
+	<insert id="addQuestionList" parameterType="com.sign.dto.ExaminationQuestions"
+		useGeneratedKeys="false">
+		<selectKey keyProperty="id" resultType="java.lang.String"
+			order="BEFORE">
+			select questions_sequence.nextval from dual
+		</selectKey>
+		insert into
+		sign_examination_questions(id,types,subject,question,answer,create_time,change_record,answer_record,question_img,grade,extend,extend2)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			( '${item.types}_${id}', #{item.types}, #{item.subject},
+			#{item.question}, #{item.answer},
+			#{item.createTime},
+			#{item.changeRecord},
+			#{item.answerRecord},
+			#{item.questionImg,jdbcType=VARCHAR},
+			#{item.grade,jdbcType=VARCHAR},
+			#{item.extend}, #{item.extend2})
+		</foreach>
+		<!-- <foreach item="item" index="index" collection="list" separator="union 
+			all"> ( SELECT '${item.types}_${id}', #{item.types}, #{item.subject}, #{item.question}, 
+			#{item.answer}, #{item.createTime}, #{item.changeRecord}, #{item.answerRecord}, 
+			#{item.questionImg,jdbcType=VARCHAR}, #{item.grade,jdbcType=VARCHAR}, #{item.extend}, 
+			#{item.extend2} FROM DUAL ) </foreach> -->
+	</insert>
+</mapper> 

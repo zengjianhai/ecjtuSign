@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sign.dao.IUserDao">
+	<select id="findUserByPhone" resultType="com.sign.dto.User">
+		SELECT id,name,sex,birthday as bir,phone,password,school FROM sign_user WHERE phone=#{param1}
+	</select>
+	
+	<insert id="register" parameterType="com.sign.dto.User">
+	　　	<selectKey keyProperty="id" resultType="int" order="BEFORE">
+	      	select user_sequence.nextval from dual
+	    </selectKey>
+	     insert into sign_user(id,name,sex,birthday,phone,password,school,create_time) 
+	     values(#{id},#{name},#{sex},#{bir},#{phone},#{password},#{school},#{createTime})
+	</insert>
+	<select id="findUserById" resultType="com.sign.dto.User">
+		SELECT id,name,sex,birthday as bir,phone,password,school FROM sign_user WHERE id=#{param1}
+	</select>
+	<update id="updatePassword" parameterType="java.lang.String">
+		update sign_user
+		SET password=111111
+		where phone=#{param1}
+	</update>
+	<update id="updateAllPassword" parameterType="com.sign.dto.UpdatePasswordInfo">
+		begin 
+         <foreach collection="list" item="item" separator=";">
+            update sign_user
+			SET password=111111
+			where phone=#{item.phone}
+          </foreach>
+          ;end;
+	</update>
+	<insert id="addUpdatePasswordInfo" parameterType="com.sign.dto.UpdatePasswordInfo">
+	     insert into sign_update_password(name,sex,birthday,phone,create_time) 
+	     values(#{name},#{sex},#{bir},#{phone},#{createTime})
+	</insert>
+	<select id="findUpdatePasswordInfoByPhone" resultType="com.sign.dto.UpdatePasswordInfo">
+		SELECT name,sex,birthday as bir,phone,create_time as createTime FROM sign_update_password WHERE phone=#{param1}
+	</select>
+	<select id="findAllUpdatePasswordInfo" resultType="com.sign.dto.UpdatePasswordInfo">
+		SELECT name,sex,birthday as bir,phone,create_time as createTime FROM sign_update_password
+	</select>
+	<delete id="delAllUpdatePasswordInfo">
+		delete from sign_update_password
+	</delete>
+	<delete id="delUpdatePasswordInfo" parameterType="java.lang.String">
+		delete from sign_update_password
+		where phone = #{param1}
+	</delete>
+</mapper> 

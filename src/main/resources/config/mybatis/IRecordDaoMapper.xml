@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sign.dao.IRecordDao">
+	<select id="findRecords" parameterType="com.sign.dto.SearchInfo"  resultType="com.sign.dto.RecordInfo">
+		SELECT id,test_name as testName,subject,create_time as createTime,grade,user_name as userName,titles,score,titles_score as titlesScore
+	    FROM sign_history  
+		where subject=#{subject} and to_char(CREATE_TIME,'YYYY')=#{date}
+	</select>
+	
+	<select id="findQuestionByIdList" resultType="com.sign.dto.ExaminationQuestions"
+		parameterType="java.lang.String">
+		SELECT id,types,subject,question,answer,create_time,change_record,
+		answer_record,question_img,grade,extend,extend2
+		FROM
+		sign_examination_questions
+		where id in
+		<foreach collection="list" item="i" index="index" open="("
+			close=")" separator=",">
+			#{i}
+		</foreach>
+	</select>
+</mapper> 

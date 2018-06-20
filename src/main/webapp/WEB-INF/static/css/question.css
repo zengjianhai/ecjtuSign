@@ -1,0 +1,150 @@
+.search {
+	position: relative;
+	width: 80%;
+	margin: 0 auto;
+	padding-top: 15px;
+}
+
+.content {
+	position: relative;
+	width: 64%;
+	height: 300px;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+.content::-webkit-scrollbar {
+	height: 5px;
+}
+
+.content::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+	background: #317dc1;
+}
+
+.content::-webkit-scrollbar-track { /*滚动条里面轨道*/
+	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	background: #EDEDED;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	select {
+		border: 0 none;
+		color: #75a7cf;
+	}
+}
+
+.page {
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	float: left;
+}
+
+.search .question-search {
+	position: relative;
+	width: 290px;
+	margin: 0 auto;
+}
+
+.search .question-condition {
+	position: relative;
+	width: 80%;
+	float: left;
+	margin: 0 auto;
+	padding-top: 10px;
+}
+
+.search .question-search input[type=text] {
+	width: 280px;
+	height: 34px;
+	padding: 0 8px;
+	background: white;
+	border: solid 1px #cdcdcd;
+	outline: none;
+	-moz-box-shadow: 0 3px 3px rgba(0, 0, 0, .05) inset;
+	-webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, .05) inset;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, .05) inset;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font-size: 14px;
+	color: #696969;
+	-webkit-font-smoothing: antialiased;
+	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+}
+
+.search .question-search input[type=text]:focus {
+	border: solid 1px #9f9f9f
+}
+
+.search .question-search button#search {
+	position: absolute;
+	display: block;
+	top: 9px;
+	right: 0;
+	background: white url(../images/404_search.png) no-repeat;
+	width: 18px;
+	height: 18px;
+	border: none;
+	cursor: pointer;
+	opacity: .3;
+	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+}
+
+.search .question-search button#search:hover {
+	opacity: .6
+}
+
+#content-table {
+	table-layout: fixed;
+	float: left;
+	position: relative;
+	top: 10px;
+	font: bold 14px/1.4em "Trebuchet MS", sans-serif;
+}
+
+#content-table thead th {
+	padding: 15px;
+	text-shadow: 1px 1px 1px #005989;
+	color: #fff;
+	border: 1px solid #E7EFE0;
+	border-bottom: 3px solid #E7EFE0;
+	background-color: #317dc1;
+	border-radius: 5px 5px 0px 0px;
+}
+
+#content-table thead th:empty {
+	background-color: transparent;
+	border: none;
+}
+
+#content-table tbody th {
+	padding: 0px 10px;
+	border: 1px solid #E7EFE0;
+	border-right: 3px solid #E7EFE0;
+	text-shadow: 1px 1px 1px #005989;
+	color: #666;
+	background-color: #317dc1;
+	border-radius: 5px 0px 0px 5px;
+}
+
+#content-table tbody td {
+	padding: 10px;
+	text-align: center;
+	border: 2px solid #E7EFE0;
+	text-shadow: 1px 1px 1px #fff;
+	color: #666;
+	background-color: #DEF3CA;
+	border-radius: 2px;
+}

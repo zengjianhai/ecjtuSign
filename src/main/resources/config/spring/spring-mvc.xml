@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans  
+    	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    	http://www.springframework.org/schema/tx   
+   		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    	http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    	http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+	<!--打开注解 -->
+	<mvc:annotation-driven />
+	<!-- 不拦截静态资源，如上面的 -->
+	<mvc:default-servlet-handler />
+	<!-- 配置资源文件,防止被拦截 -->
+	<mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
+	<mvc:resources location="/WEB-INF/static/" mapping="/static/**" />
+	<mvc:resources location="/WEB-INF/jqgrid/" mapping="/jqgrid/**" />
+	<mvc:resources location="/WEB-INF/error/" mapping="/error/**" />
+	<!--配置扫描包 -->
+	<context:component-scan base-package="com.sign.controller"></context:component-scan>
+	<!-- springmvc提供的视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:viewClass="org.springframework.web.servlet.view.JstlView" p:prefix="/WEB-INF/jsp/"
+		p:suffix=".jsp">
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jsonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean id="jsonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding">
+			<value>utf-8</value>
+		</property>
+		<property name="maxUploadSize">
+			<value>104857600</value>
+		</property>
+		<property name="maxInMemorySize">
+			<value>4096</value>
+		</property>
+	</bean>
+</beans> 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sign.dao.IQuestionDao">
+	<select id="search" parameterType="com.sign.dto.SearchInfo"
+		resultType="com.sign.dto.ExaminationQuestions">
+		SELECT id,types,subject,question,answer,create_time,change_record,
+		answer_record,question_img,grade,extend,extend2
+		FROM sign_examination_questions
+		where types=#{types} and subject=#{subject} and
+		to_char(CREATE_TIME,'YYYY')=#{date}
+		<if test="question != null and question != ''">
+			and question LIKE CONCAT(CONCAT('%', #{question}),'%')
+		</if>
+	</select>
+	<update id="updateQuestion" parameterType="com.sign.dto.ExaminationQuestions">
+		update sign_examination_questions
+		SET question=#{question},answer=#{answer}
+		where id=#{id}
+	</update>
+</mapper> 
